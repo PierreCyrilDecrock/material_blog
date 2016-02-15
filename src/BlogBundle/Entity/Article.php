@@ -52,27 +52,27 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="category", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Category")
      */
     private $category;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tags", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="Tag")
      */
     private $tags;
 
     /**
      * @var string
      *
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\Column(name="author", type="string", length=255)
      */
     private $author;
 
     /**
     * @ORM\OneToMany(targetEntity="Comment", mappedBy="article")
-    * @ORM\JoinColumn(name="comment_id",  referencedColumnName="id")
     */
     private $comments;
 
@@ -283,5 +283,28 @@ class Article
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \BlogBundle\Entity\Tag $tags
+     * @return Article
+     */
+    public function addTag(\BlogBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \BlogBundle\Entity\Tag $tags
+     */
+    public function removeTag(\BlogBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
     }
 }

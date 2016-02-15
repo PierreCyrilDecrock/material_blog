@@ -12,6 +12,14 @@ bundle_article:
   requirements:
     id: \d+
 
+bundle_categories:
+  path:     /categories
+  defaults: { _controller: BlogBundle:Categories:categories }
+
+#--------------#
+#     ADMIN    #
+#--------------#
+
 bundle_newArticle:
   path:     /article/new
   defaults: { _controller: BlogBundle:Articles:new }
@@ -24,7 +32,16 @@ bundle_newTag:
   path:     /tag/new
   defaults: { _controller: BlogBundle:Tags:new }
 
+#--------------#
+#     LOGIN    #
+#--------------#
 
-bundle_categories:
-  path:     /categories
-  defaults: { _controller: BlogBundle:Categories:categories }
+bundle_login:
+  path: /login
+  defaults: { _controller: BlogBundle:Security:login }
+
+bundle_login_check:
+  path: /login_check
+
+bundle_logout:
+  path: /logout

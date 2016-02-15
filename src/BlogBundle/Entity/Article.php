@@ -70,6 +70,12 @@ class Article
      */
     private $author;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Comment", mappedBy="article")
+    * @ORM\JoinColumn(name="comment_id",  referencedColumnName="id")
+    */
+    private $comments;
+
     public function __construct()
     {
       $this->publishedAt = new \DateTime();

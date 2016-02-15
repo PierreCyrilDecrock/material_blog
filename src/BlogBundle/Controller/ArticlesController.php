@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use BlogBundle\Entity\Article;
 use BlogBundle\Entity\Comment;
 use BlogBundle\Resources\Form\Type\ArticleType;
+use BlogBundle\Resources\Form\Type\CommentType;
 use BlogBundle\Resources\Form\Type\EditArticleType;
 
 
@@ -105,29 +106,33 @@ class ArticlesController extends Controller
         ));
     }
 
-    // public function newCommentAction(Request $request, $id)
-    // {
-    //
-    //     $comment = new Comment();
-    //
-    //     $form = $this->createForm(ArticleType::class, $comment);
-    //
-    //     $comment->setPublishedAt(DateTime);
-    //     $comment->setArticle($this->getDoctrine()->getRepository("Bundle:Article")->find($id));
-    //
-    //     $form-> handleRequest( $request);
-    //
-    //     if($form->isValid()){
-    //         $em = $this-> getDoctrine()->getManager();
-    //         $em->persist($comment);
-    //         $em->flush($comment);
-    //
-    //         return $this->redirectToRoute("bundle_newComment");
-    //
-    //     }
-    //
-    //     return $this->render('BlogBundle:Default:newComment.html.twig',[
-    //       'form' => $form->createView()
-    //     ]);
-    // }
+    public function newCommentAction(Request $request, $id)
+    {
+
+        $comment = new Comment();
+
+        $form = $this->createForm(CommentType::class, $comment);
+
+        $comment->setPublishedAt(new \DateTime());
+
+        $repository = $this->getDoctrine()->getRepository('BlogBundle:Article');
+        $article = $repository->findOne($id);
+
+        $comment->setArticle($article);
+
+        $form-> handleRequest( $request);
+
+        if($form->isValid()){
+            $em = $this-> getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush($comment);
+
+            return $this->redirectToRoute("bundle_article",['id' => $id]);
+
+        }
+
+        return $this->render('BlogBundle:Default:newComment.html.twig',[
+          'form' => $form->createView()
+        ]);
+    }
 }

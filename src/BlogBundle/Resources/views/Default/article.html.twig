@@ -12,7 +12,7 @@
     </div>
     {% endfor %}
 
-    
+    <a href="{{ path ('bundle_newComment', {'id': article.id})}}" class="waves-effect waves-light btn">Ajouter un commentaire</a>
     {% for comment in article.comments %}
         <div class="row">
             <div class="col s12 m6">

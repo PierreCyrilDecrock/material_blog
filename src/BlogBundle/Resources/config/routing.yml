@@ -19,6 +19,8 @@ bundle_categories:
 bundle_newComment:
   path:     /article/{id}/comment/new
   defaults: { _controller: BlogBundle:Articles:newComment }
+  requirements:
+    id: \d+
 
 
 #--------------#

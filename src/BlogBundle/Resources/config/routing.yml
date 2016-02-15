@@ -12,9 +12,18 @@ bundle_article:
   requirements:
     id: \d+
 
-bundle_form:
-  path:     /new
+bundle_newArticle:
+  path:     /article/new
   defaults: { _controller: BlogBundle:Articles:new }
+
+bundle_newCategory:
+  path:     /category/new
+  defaults: { _controller: BlogBundle:Categories:new }
+
+bundle_newTag:
+  path:     /tag/new
+  defaults: { _controller: BlogBundle:Tags:new }
+
 
 bundle_categories:
   path:     /categories

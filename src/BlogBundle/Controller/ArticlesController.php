@@ -49,7 +49,8 @@ class ArticlesController extends Controller
           $em->persist($article);
           $em->flush($article);
 
-          return new Response('ok');
+          return $this->redirectToRoute("bundle_newArticle");
+
       }
 
       return $this->render('BlogBundle:Default:newArticle.html.twig',[

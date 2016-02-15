@@ -12,8 +12,9 @@
 
       {% for comment in article.comments %}
 
-          <h1>{{ comment.author }}</h1>
-        
+          <p>{{ comment.author }}</p>
+          <p>{{ comment.content }}</p>
+          <p>{{ comment.publishedAt|date("m/d/Y")}}</p>
 
       {% endfor %}
 {% endblock %}

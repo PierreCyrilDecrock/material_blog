@@ -24,7 +24,7 @@ class CategoriesController extends Controller
 
     $category = new Category();
 
-    $form = $this->createForm(ArticleType::class, $category);
+    $form = $this->createForm(CategoryType::class, $category);
 
     $form-> handleRequest( $request);
 
@@ -33,7 +33,7 @@ class CategoriesController extends Controller
       $em->persist($category);
       $em->flush($category);
 
-      return new Response('ok');
+      return $this->redirectToRoute("bundle_newCategory");
     }
 
     return $this->render('BlogBundle:Default:newCategory.html.twig',[

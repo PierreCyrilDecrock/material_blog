@@ -30,30 +30,45 @@ class ArticlesController extends Controller
   public function newAction(Request $request)
   {
 
-    if($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
-      //Faire ceci celà si un utilisateur est connecté
-    }
+      if($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
+        //Faire ceci celà si un utilisateur est connecté
+      }
 
-    $user = $this->get('security.token_storage')->getToken()->getUser();
+      $user = $this->get('security.token_storage')->getToken()->getUser();
 
-    $article = new Article();
+      $article = new Article();
 
-    $article->setAuthor($user);
+      $article->setAuthor($user);
 
-    $form = $this->createForm(ArticleType::class, $article);
+      $form = $this->createForm(ArticleType::class, $article);
 
-    $form-> handleRequest( $request);
+      $form-> handleRequest( $request);
 
-    if($form->isValid()){
-      $em = $this-> getDoctrine()->getManager();
-      $em->persist($article);
-      $em->flush($article);
+      if($form->isValid()){
+          $em = $this-> getDoctrine()->getManager();
+          $em->persist($article);
+          $em->flush($article);
 
-      return new Response('ok');
-    }
+          return new Response('ok');
+      }
 
-    return $this->render('BlogBundle:Default:newArticle.html.twig',[
-      'form' => $form->createView()
-    ]);
+      return $this->render('BlogBundle:Default:newArticle.html.twig',[
+        'form' => $form->createView()
+      ]);
+  }
+
+  public function deleteAction(Request $request, Post $article)
+  {
+      $form = $this->createDeleteForm($article);
+      $form->handleRequest($request);
+
+      if ($form->isSubmitted() && $form->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+
+          $em->remove($article);
+          $em->flush();
+      }
+
+      return $this->redirectToRoute('######');
   }
 }

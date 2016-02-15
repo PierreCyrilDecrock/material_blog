@@ -1,0 +1,41 @@
+
+
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    <div class="row">
+      <div class="input-field col s6">
+        <input {% if type == "date" %}class="datepicker"{% endif %}  class="validate"  type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+      </div>
+    </div>
+{%- endblock form_widget_simple -%}
+
+
+{%- block button_widget -%}
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <div >
+      <button class="waves-effect waves-light btn" type="{{ type|default('button') }}" class="btn btn-primary" {{ block('button_attributes') }}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</button>
+    </div>
+{%- endblock button_widget -%}
+
+{%- block date_widget -%}
+    {%- if widget == 'single_text' -%}
+        {{ block('form_widget_simple') }}
+    {%- else -%}
+        <div {{ block('widget_container_attributes') }}>
+            {{- date_pattern|replace({
+                '{{ year }}':  form_widget(form.year),
+                '{{ month }}': form_widget(form.month),
+                '{{ day }}':   form_widget(form.day),
+            })|raw -}}
+        </div>
+    {%- endif -%}
+{%- endblock date_widget -%}

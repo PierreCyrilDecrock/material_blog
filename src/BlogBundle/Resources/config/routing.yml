@@ -1,6 +1,6 @@
 blog_homepage:
     path:     /
-    defaults: { _controller: BlogBundle:Default:index }
+    defaults: { _controller: BlogBundle:Articles:articles }
 
 bundle_articles:
   path:     /articles
@@ -15,3 +15,7 @@ bundle_article:
 bundle_form:
   path:     /new
   defaults: { _controller: BlogBundle:Articles:new }
+
+bundle_categories:
+  path:     /categories
+  defaults: { _controller: BlogBundle:Categories:categories }

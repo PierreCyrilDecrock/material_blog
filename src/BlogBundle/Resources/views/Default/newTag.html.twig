@@ -1,0 +1,9 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block body %}
+
+{{ form_start(form) }}
+{{ form_row(form.content)}}
+{{ form_end(form) }}
+
+{% endblock %}

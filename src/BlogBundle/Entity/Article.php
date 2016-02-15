@@ -70,11 +70,15 @@ class Article
      */
     private $author;
 
+    public function __construct()
+    {
+      $this->publishedAt = new \DateTime();
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -97,7 +101,7 @@ class Article
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -120,7 +124,7 @@ class Article
     /**
      * Get summary
      *
-     * @return string 
+     * @return string
      */
     public function getSummary()
     {
@@ -143,7 +147,7 @@ class Article
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -166,7 +170,7 @@ class Article
     /**
      * Get publishedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPublishedAt()
     {
@@ -189,7 +193,7 @@ class Article
     /**
      * Get category
      *
-     * @return string 
+     * @return string
      */
     public function getCategory()
     {
@@ -212,7 +216,7 @@ class Article
     /**
      * Get tags
      *
-     * @return string 
+     * @return string
      */
     public function getTags()
     {
@@ -235,10 +239,43 @@ class Article
     /**
      * Get author
      *
-     * @return string 
+     * @return string
      */
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \BlogBundle\Entity\Comment $comments
+     * @return Article
+     */
+    public function addComment(\BlogBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \BlogBundle\Entity\Comment $comments
+     */
+    public function removeComment(\BlogBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

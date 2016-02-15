@@ -16,6 +16,11 @@ bundle_categories:
   path:     /categories
   defaults: { _controller: BlogBundle:Categories:categories }
 
+bundle_newComment:
+  path:     /article/{id}/comment/new
+  defaults: { _controller: BlogBundle:Articles:newComment }
+
+
 #--------------#
 #     ADMIN    #
 #--------------#
@@ -33,8 +38,17 @@ bundle_newTag:
   defaults: { _controller: BlogBundle:Tags:new }
 
 bundle_admin:
-  path:     /administration/tag/new
+  path:     /administration
   defaults: { _controller: BlogBundle:Articles:admin }
+
+bundle_editArticle:
+  path:     /administration/article/{id}/edit
+  defaults: { _controller: BlogBundle:Articles:edit }
+
+bundle_deleteArticle:
+  path:     /administration/article/{id}/delete
+  defaults: { _controller: BlogBundle:Articles:delete }
+
 
 #--------------#
 #     LOGIN    #
@@ -49,3 +63,7 @@ bundle_login_check:
 
 bundle_logout:
   path: /logout
+
+bundle_signup:
+  path: /signup
+  defaults: { _controller: BlogBundle:Security:signup }

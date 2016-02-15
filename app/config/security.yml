@@ -3,9 +3,9 @@
 security:
     encoders:
         BlogBundle\Entity\User:
-            algorithm: plaintext
-            # encode_as_base64: false
-            # iterations: 1
+            algorithm: plaintext #replace for a sha512 later
+            encode_as_base64: false
+            iterations: 1
 
     providers:
         our_db_provider:

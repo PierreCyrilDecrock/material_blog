@@ -9,9 +9,10 @@
       <p>{{ article.content }}</p>
       <p>Auteur : {{ article.author.username }}</p>
       <p>Catégorie : {{ article.category.name }}</p>
-
       {% for tag in article.tags %}
+      <div class="chip">
           {{ tag.name }}
+      </div>
       {% endfor %}
 
   {% endfor %}

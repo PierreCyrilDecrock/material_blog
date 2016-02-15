@@ -1,7 +1,7 @@
 {% extends 'BlogBundle::layout.html.twig' %}
 
 {% block body %}
-  {% for article in articles[1] %}
+  {% for article in getLastFive() %}
     <a href="{{ path ('bundle_article', {'id': article.id}) }}">
       <h4>{{ loop.index }} - {{ article.title}}</h4>
       <p>{{ article.summary }}</p>

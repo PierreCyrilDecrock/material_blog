@@ -7,16 +7,26 @@
     <p>Auteur : {{ article.author.username }}</p>
     <p>Catégorie : {{ article.category.name }}</p>
     {% for tag in article.tags %}
+    <div class="chip">
         {{ tag.name }}
+    </div>
     {% endfor %}
 
+    
+    {% for comment in article.comments %}
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{ comment.author }}</span>
+                        <p>{{ comment.content }}</p>
+                    </div>
+                    <div class="card-action">
+                        <p>{{ comment.publishedAt|date("m/d/Y")}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-      {% for comment in article.comments %}
-
-          <p>{{ comment.author }}</p>
-          <p>{{ comment.content }}</p>
-          <p>{{ comment.publishedAt|date("m/d/Y")}}</p>
-
-      {% endfor %}
+    {% endfor %}
 {% endblock %}

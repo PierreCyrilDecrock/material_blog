@@ -1,18 +1,18 @@
 {% extends 'BlogBundle::layout.html.twig' %}
 
 {% block body %}
-  {% for article in articles %}
-    <a href="{{ path ('bundle_article', {'id': article.id}) }}">
-      <h4>{{ article.title}}</h4>
-    </a>
-      <i>{{ article.summary }}</i>
-      <p>{{ article.content }}</p>
-      <p>Auteur : {{ article.author.username }}</p>
-      <p>Catégorie : {{ article.category.name }}</p>
-
-      {% for tag in article.tags %}
-          {{ tag.name }}
-      {% endfor %}
-
-  {% endfor %}
+    <div class="row">
+        <ul class="collection col s6 offset-s3">
+            {% for article in articles %}
+              <li class="collection-item avatar">
+                  <a href="{{ path ('bundle_editArticle', {'id': article.id}) }}" class="circle center"><i class="material-icons">settings</i></a>
+                  <span class="title">{{ article.title}}</span>
+                  <p>{{ article.summary }}<br>
+                     {{ article.author.username }}
+                  </p>
+                  <a href="{{ path ('bundle_deleteArticle', {'id': article.id}) }}" class="secondary-content"><i class="material-icons">settings_power</i></a>
+              </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

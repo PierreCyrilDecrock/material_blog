@@ -4,6 +4,10 @@ namespace BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use BlogBundle\Entity\User;
+use BlogBundle\Resources\Form\Type\UserType;
+
+
 
 class SecurityController extends Controller
 {
@@ -25,5 +29,30 @@ class SecurityController extends Controller
 
     public function loginCheckAction(Request $request){
 
+    }
+
+    public function signupAction(Request $request)
+    {
+
+
+
+        $user = new User();
+
+        $form = $this->createForm(UserType::class, $user);
+
+        $form-> handleRequest( $request);
+
+        if($form->isValid()){
+            $em = $this-> getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush($user);
+
+            return $this->redirectToRoute("blog_homepage");
+
+        }
+
+        return $this->render('BlogBundle::signup.html.twig',[
+          'form' => $form->createView()
+        ]);
     }
 }

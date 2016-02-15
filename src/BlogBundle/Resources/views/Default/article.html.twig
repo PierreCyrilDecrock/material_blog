@@ -1,0 +1,10 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block body %}
+  <h4>{{ article.title}}</h4>
+  <p>{{ article.summary }}</p>
+  <p>{{ article.content }}</p>
+  <p>{{ article.author }}</p>
+  <p>{{ article.category }}</p>
+  <p>{{ article.tags }}</p>
+{% endblock %}

@@ -1,10 +1,15 @@
 {% extends 'BlogBundle::layout.html.twig' %}
 
 {% block body %}
-    {% for article in articles %}
-      <a href="#">
-        <h4 class="list-group-item-heading">{{ article.author}}</h4>
-        <p class="list-group-item-text">{{ article.content }}</p>
-      </a>
-    {% endfor %}
+  {% for article in articles %}
+    <a href="{{ path ('bundle_article', {'id': article.id}) }}">
+      <h4>{{ article.title}}</h4>
+    </a>
+      <p>{{ article.summary }}</p>
+      <p>{{ article.content }}</p>
+      <p>{{ article.author }}</p>
+      <p>{{ article.category }}</p>
+      <p>{{ article.tags }}</p>
+
+  {% endfor %}
 {% endblock %}

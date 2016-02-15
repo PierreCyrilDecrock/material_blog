@@ -5,3 +5,13 @@ blog_homepage:
 bundle_articles:
   path:     /articles
   defaults: { _controller: BlogBundle:Articles:articles }
+
+bundle_article:
+  path:     /articles/{id}
+  defaults: { _controller: BlogBundle:Articles:article }
+  requirements:
+    id: \d+
+
+bundle_form:
+  path:     /new
+  defaults: { _controller: BlogBundle:Articles:new }

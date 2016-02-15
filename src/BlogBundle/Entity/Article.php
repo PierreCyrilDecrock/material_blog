@@ -6,48 +6,69 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Article
+ *
+ * @ORM\Table(name="article")
+ * @ORM\Entity(repositoryClass="BlogBundle\Repository\ArticleRepository")
  */
 class Article
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="summary", type="string", length=255)
      */
     private $summary;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="content", type="text")
      */
     private $content;
 
     /**
-     * @var int
-     */
-    private $author;
-
-    /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="publishedAt", type="datetime")
      */
     private $publishedAt;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="category", type="string", length=255)
      */
     private $category;
 
     /**
-     * @var array
+     * @var string
+     *
+     * @ORM\Column(name="tags", type="string", length=255)
      */
     private $tags;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="author", type="string", length=255)
+     */
+    private $author;
 
 
     /**
@@ -130,29 +151,6 @@ class Article
     }
 
     /**
-     * Set author
-     *
-     * @param integer $author
-     * @return Article
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return integer 
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
      * Set publishedAt
      *
      * @param \DateTime $publishedAt
@@ -201,7 +199,7 @@ class Article
     /**
      * Set tags
      *
-     * @param array $tags
+     * @param string $tags
      * @return Article
      */
     public function setTags($tags)
@@ -214,10 +212,33 @@ class Article
     /**
      * Get tags
      *
-     * @return array 
+     * @return string 
      */
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Set author
+     *
+     * @param string $author
+     * @return Article
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string 
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }

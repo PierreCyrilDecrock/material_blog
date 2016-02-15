@@ -10,7 +10,7 @@ namespace BlogBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
-  public function monFind($id){
+  public function findOne($id){
 
     try{
       $article = $this->createQueryBuilder('p')

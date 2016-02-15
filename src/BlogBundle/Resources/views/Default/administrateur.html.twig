@@ -3,12 +3,13 @@
 {% block body %}
   {% for article in articles %}
     <a href="{{ path ('bundle_article', {'id': article.id}) }}">
-      <h4>{{ article.title}}</h4><a class="btn-flat disabled">{{ article.comments.count}} Commentaires</a>
+      <h4>{{ article.title}}</h4>
     </a>
-      <i>{{ article.summary }}</i>
+      <p>{{ article.summary }}</p>
       <p>{{ article.content }}</p>
-      <p>Auteur : {{ article.author.username }}</p>
-      <p>Catégorie : {{ article.category.name }}</p>
+      <p>{{ article.author }}</p>
+          <p>Catégorie : {{ cat.id }}</p>
+      {% endfor %}
 
       {% for tag in article.tags %}
           {{ tag.name }}

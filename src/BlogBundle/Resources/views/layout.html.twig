@@ -13,16 +13,20 @@
   <body>
   <nav>
       <div class="nav-wrapper">
-          <a href="#!" class="brand-logo">Mon blog</a>
+          <a href="{{ path ('blog_homepage')}}" class="brand-logo">Mon blog</a>
           <ul class="right hide-on-med-and-down">
               <li><a href="{{ path ('blog_homepage')}}">Accueil</a></li>
               <li><a href="{{ path ('bundle_articles')}}">Articles</a></li>
-              <li><a href="{{ path ('bundle_categories')}}">Category</a></li>
-              <li><a class="waves-effect waves-light btn">Connexion</a></li>
+              <li><a href="{{ path ('bundle_categories')}}">Categories</a></li>
+
               {% if app.user %}
-                  <li><a href="{{ path ('bundle_logout')}}">Se déconnecter</a></li>
+                  <li><a href="{{ path ('bundle_newArticle')}}">Ajouter Article</a></li>
+                  <li><a href="{{ path ('bundle_newTag')}}">Ajouter Tag</a></li>
+                  <li><a href="{{ path ('bundle_newCategory')}}">Ajouter Categories</a></li>
+                  <li><a href="{{ path ('bundle_admin')}}">Admin</a></li>
+                  <li><a href="{{ path ('bundle_logout')}}" class="waves-effect waves-light btn">Se déconnecter</a></li>
               {% else %}
-                  <li><a href="{{ path ('bundle_login')}}">Se connecter</a></li>
+                  <li><a href="{{ path ('bundle_login')}}" class="waves-effect waves-light btn">Connexion</a></li>
               {% endif %}
           </ul>
       </div>

@@ -19,7 +19,6 @@ class ArticleType extends AbstractType
             ->add('title', TextType::class, array('label' => 'Titre'))
             ->add('summary', TextType::class, array('label' => 'Résumé'))
             ->add('content', TextType::class, array('label' => 'Contenu'))
-            ->add('author', TextType::class, array('label' => 'Auteur'))
             ->add('publishedAt', DateType::class, array('label' => 'Date de publication', 'widget' => 'single_text', 'format' => 'yyyy-MM-dd',))
             ->add('category', EntityType::class, array(
               'class' => 'BlogBundle:Category',

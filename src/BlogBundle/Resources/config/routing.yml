@@ -21,16 +21,20 @@ bundle_categories:
 #--------------#
 
 bundle_newArticle:
-  path:     /article/new
+  path:     /administration/article/new
   defaults: { _controller: BlogBundle:Articles:new }
 
 bundle_newCategory:
-  path:     /category/new
+  path:     /administration/category/new
   defaults: { _controller: BlogBundle:Categories:new }
 
 bundle_newTag:
-  path:     /tag/new
+  path:     /administration/tag/new
   defaults: { _controller: BlogBundle:Tags:new }
+
+bundle_admin:
+  path:     /administration/tag/new
+  defaults: { _controller: BlogBundle:Articles:admin }
 
 #--------------#
 #     LOGIN    #

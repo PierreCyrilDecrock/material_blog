@@ -67,7 +67,6 @@ class Article
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\Column(name="author", type="string", length=255)
      */
     private $author;
 

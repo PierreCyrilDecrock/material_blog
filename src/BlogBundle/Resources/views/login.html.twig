@@ -1,18 +1,25 @@
 {% extends 'BlogBundle::layout.html.twig' %}
 
 {% block body %}
-
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
-
-<form action="{{ path('bundle_login') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
-
-    <button type="submit">login</button>
-</form>
+<div class="row">
+     <form class="col s6 offset-s3" action="{{ path('bundle_login_check') }}" method="post">
+         <h3>Blog login</h3>
+         <div class="row">
+             <div class="input-field col s12">
+                 <input id="username" name="_username" type="text" class="validate" value="{{ last_username }}">
+                 <label for="username">Username</label>
+             </div>
+         </div>
+         <div class="row">
+             <div class="input-field col s12">
+             <input type="password" id="password" name="_password" class="validate">
+                 <label for="password">Password</label>
+             </div>
+         </div>
+         {% if error %}
+             <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+         {% endif %}
+         <button class="waves-effect waves-light btn" type="submit">login</button>
+     </form>
+ </div>
 {% endblock %}

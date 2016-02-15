@@ -8,14 +8,10 @@ security:
             # iterations: 1
 
     providers:
-        in_memory:
-            memory: ~
-
-    providers:
         our_db_provider:
             entity:
                 class: BlogBundle:User
-                property: mail
+                property: username
                 property: password
 
     firewalls:
@@ -27,17 +23,15 @@ security:
         main:
             anonymous: ~
             form_login:
-                login_path: admin_login
-                check_path: admin_login_check
+                provider: our_db_provider
+                login_path: bundle_login
+                check_path: bundle_login_check
                 default_target_path: blog_homepage
             pattern:    ^/
             logout:
-                path:   admin_logout
-                target: admin_login
+                path:   bundle_logout
+                target: bundle_login
 
     access_control:
-        - { path: bundle_login,        role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: bundle_login_check,  role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: bundle_logout,       role: ROLE_ADMIN }
-        - { path: ^/administration,       role: ROLE_ADMIN }
+        - { path: ^/administration,       roles: IS_AUTHENTICATED_FULLY  }
         - { path: ^/,                     role: IS_AUTHENTICATED_ANONYMOUSLY }

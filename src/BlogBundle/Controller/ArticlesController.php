@@ -14,20 +14,28 @@ use BlogBundle\Resources\Form\Type\EditArticleType;
 
 class ArticlesController extends Controller
 {
-    public function articlesAction(Request $request)
+    public function homeAction(Request $request)
     {
       $repository = $this->getDoctrine()->getRepository('BlogBundle:Article');
-      $articles = $repository->findAll();
+      $articles = $repository->getByNumber(5);
 
-      return $this->render('BlogBundle:Default:articles.html.twig',['articles'=> $articles]);
+      return $this->render('BlogBundle:Default:index.html.twig',['articles'=> $articles]);
+    }
+
+    public function articlesAction(Request $request)
+    {
+        $repository = $this->getDoctrine()->getRepository('BlogBundle:Article');
+        $articles = $repository->findAll();
+
+        return $this->render('BlogBundle:Default:articles.html.twig',['articles'=> $articles]);
     }
 
     public function articleAction($id)
     {
-      $repository = $this->getDoctrine()->getRepository('BlogBundle:Article');
-      $article = $repository->findOne($id);
+        $repository = $this->getDoctrine()->getRepository('BlogBundle:Article');
+        $article = $repository->findOne($id);
 
-      return $this->render('BlogBundle:Default:article.html.twig',['article'=> $article]);
+        return $this->render('BlogBundle:Default:article.html.twig',['article'=> $article]);
     }
 
     public function newAction(Request $request)

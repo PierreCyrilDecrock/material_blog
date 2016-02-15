@@ -25,4 +25,15 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
 
     return $article;
   }
+
+  public function getByNumber($number)
+  {
+	   $query = $this->createQueryBuilder('post')
+		    ->setMaxResults($number)
+        ->orderBy('post.id', 'DESC')
+        ->getQuery();
+
+        return $query->getResult();
+  }
+
 }
